@@ -16,7 +16,6 @@ use cc26x2::aon;
 use cc26x2::prcm;
 use kernel::capabilities;
 use kernel::hil;
-use kernel::Chip;
 
 #[macro_use]
 pub mod io;
@@ -364,8 +363,7 @@ pub unsafe fn reset_handler() {
 
     kernel::procs::load_processes(
         board_kernel,
-        &cortexm4::syscall::SysCall::new(),
-        chip.mpu(),
+        chip,
         &_sapps as *const u8,
         &mut APP_MEMORY,
         &mut PROCESSES,

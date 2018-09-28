@@ -31,7 +31,6 @@ use kernel::hil::radio;
 use kernel::hil::radio::{RadioConfig, RadioData};
 use kernel::hil::spi::SpiMaster;
 use kernel::hil::Controller;
-use kernel::Chip;
 
 use components::adc::AdcComponent;
 use components::alarm::AlarmDriverComponent;
@@ -392,8 +391,7 @@ pub unsafe fn reset_handler() {
     }
     kernel::procs::load_processes(
         board_kernel,
-        &cortexm4::syscall::SysCall::new(),
-        chip.mpu(),
+        chip,
         &_sapps as *const u8,
         &mut APP_MEMORY,
         &mut PROCESSES,
