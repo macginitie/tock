@@ -54,6 +54,7 @@ pub mod spi;
 pub mod temperature;
 pub mod tmp006;
 pub mod tsl2561;
+pub mod uart_receive_until_terminator;
 pub mod usb;
 pub mod usb_user;
 pub mod usbc_client;
