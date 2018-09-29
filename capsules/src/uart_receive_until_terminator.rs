@@ -5,26 +5,6 @@ use core::cell::Cell;
 use kernel::common::cells::OptionalCell;
 use kernel::hil;
 use kernel::ReturnCode;
-// use kernel::{AppId, AppSlice, Callback, Driver, Grant, ReturnCode, Shared};
-
-/// Syscall driver number.
-// pub const DRIVER_NUM: usize = 0x00000001;
-
-// #[derive(Default)]
-// pub struct App {
-//     write_callback: Option<Callback>,
-//     write_buffer: Option<AppSlice<Shared, u8>>,
-//     write_len: usize,
-//     write_remaining: usize, // How many bytes didn't fit in the buffer and still need to be printed.
-//     pending_write: bool,
-
-//     read_callback: Option<Callback>,
-//     read_buffer: Option<AppSlice<Shared, u8>>,
-//     read_len: usize,
-// }
-
-// pub static mut WRITE_BUF: [u8; 64] = [0; 64];
-// pub static mut READ_BUF: [u8; 64] = [0; 64];
 
 pub trait UartReceiveUntilTerminator: hil::uart::UART {
     fn receive_until_terminator(&self, rx_buffer: &'static mut [u8], terminator: u8);
@@ -103,14 +83,6 @@ impl<U: hil::uart::UART> hil::uart::Client for UartTerminatorReceiver<'a, U> {
         // callback through, on a receive_until_terminator we need to check if
         // we got the terminator.
 
-        // self.state.map_or_else(|| {
-        //     // This was a normal receive.
-        //     self.client.map(move |client| {
-        //         client.receive_complete(buffer, rx_len, error);
-        //     });
-        // }, |state| {
-        //     // This was a receive_until_terminator() call.
-
         match self.state.get() {
             State::Normal => {
                 self.client.map(move |client| {
@@ -171,7 +143,5 @@ impl<U: hil::uart::UART> hil::uart::Client for UartTerminatorReceiver<'a, U> {
                 }
             }
         }
-
-        // });
     }
 }
