@@ -21,6 +21,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "crt0s"
+version = "0.1.0"
+
+[[package]]
 name = "hail"
 version = "0.1.0"
 dependencies = [
@@ -43,6 +47,7 @@ name = "sam4l"
 version = "0.1.0"
 dependencies = [
  "cortexm4 0.1.0",
+ "crt0s 0.1.0",
  "kernel 0.1.0",
 ]
 
