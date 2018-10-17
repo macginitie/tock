@@ -53,7 +53,7 @@ automatically find your connected Hail. Simply run `tockloader listen`:
       ...
 
 
-Tockloader has a several other useful features, such as `tockloader list` which
+Tockloader has several other useful features, such as `tockloader list` which
 collects all of the applications currently installed:
 
     $ tockloader list
